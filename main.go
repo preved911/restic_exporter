@@ -42,9 +42,9 @@ func resticCheck() {
 			for _, prefix := range prefixes {
 				os.Setenv(
 					"RESTIC_REPOSITORY",
-					fmt.Sprintf("%s/%s", os.Getenv("RESTIC_BUCKET"), prefix))
+					fmt.Sprintf("%s/%s", os.Getenv("RESTIC_REPOSITORY_BUCKET"), prefix))
 
-				cmd := exec.Command(resticExecPath)
+				cmd := exec.Command(resticExecPath, "check")
 
 				// 5 attempts before failed state return
 				for i := 0; i < 5; i++ {
