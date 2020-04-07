@@ -44,10 +44,9 @@ func resticCheck() {
 					"RESTIC_REPOSITORY",
 					fmt.Sprintf("%s/%s", os.Getenv("RESTIC_REPOSITORY_BUCKET"), prefix))
 
-				cmd := exec.Command(resticExecPath, "check")
-
 				// 5 attempts before failed state return
 				for i := 0; i < 5; i++ {
+					cmd := exec.Command(resticExecPath, "check")
 					err := cmd.Run()
 					if err != nil {
 						log.Printf("check failed: %s\n", err)
